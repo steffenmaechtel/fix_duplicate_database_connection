@@ -39,15 +39,6 @@ class SingleDatabaseConnection extends DatabaseConnection
      */
     protected function afterDatabaseConnection()
     {
-        foreach ($this->initializeCommandsAfterConnect as $command) {
-            if ($this->query($command) === false) {
-                GeneralUtility::sysLog(
-                    'Could not initialize DB connection with query "' . $command . '": ' . $this->sql_error(), 'core', GeneralUtility::SYSLOG_SEVERITY_ERROR
-                );
-            }
-        }
-        $this->checkConnectionCharset();
-
         // Prepare user defined objects (if any) for hooks which extend query methods
         $this->preProcessHookObjects = [];
         $this->postProcessHookObjects = [];
