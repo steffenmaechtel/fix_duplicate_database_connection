@@ -1,0 +1,30 @@
+{
+    "name": "steffenmaechtel/fix_duplicate_database_connection",
+    "type": "typo3-cms-extension",
+    "description": "TYPO3 extension to fix duplicate database connection for old extensions using $GLOBALS['TYPO3_DB']",
+    "homepage": "https://github.com/steffenmaechtel/exclude_tables_for_compare_database",
+    "version": "0.0.1",
+    "license": "MIT",
+    "keywords": [
+        "TYPO3",
+        "CMS",
+        "typo3"
+    ],
+    "require": {
+        "typo3/cms-core": ">=6.2.0,<8.7.999",
+        "php": ">=5.5.0,<7.3.0"
+    },
+    
+    "autoload": {
+        "psr-4": {
+            "SteffenMaechtel\\FixDuplicateDatabaseConnection\\": "Classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Steffen Maechtel",
+            "email": "info@steffen-maechtel.de",
+            "homepage": "http://www.steffen-maechtel.de/"
+        }
+    ]
+}
