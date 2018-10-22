@@ -27,8 +27,47 @@ class SingleDatabaseConnection extends DatabaseConnection
         if ($handle instanceof mysqli) {
             $this->setDatabaseHandle($handle);
             $this->isConnected = true;
+
+            $this->afterDatabaseConnection();
         } else {
             parent::connectDB();
+        }
+    }
+
+    /**
+     * This stuff is normaly done in connectDB after a new connection is opened
+     */
+    protected function afterDatabaseConnection()
+    {
+        foreach ($this->initializeCommandsAfterConnect as $command) {
+            if ($this->query($command) === false) {
+                GeneralUtility::sysLog(
+                    'Could not initialize DB connection with query "' . $command . '": ' . $this->sql_error(), 'core', GeneralUtility::SYSLOG_SEVERITY_ERROR
+                );
+            }
+        }
+        $this->checkConnectionCharset();
+
+        // Prepare user defined objects (if any) for hooks which extend query methods
+        $this->preProcessHookObjects = [];
+        $this->postProcessHookObjects = [];
+        if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_db.php']['queryProcessors'])) {
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_db.php']['queryProcessors'] as $classRef) {
+                $hookObject = GeneralUtility::getUserObj($classRef);
+                if (!(
+                    $hookObject instanceof PreProcessQueryHookInterface || $hookObject instanceof PostProcessQueryHookInterface
+                    )) {
+                    throw new \UnexpectedValueException(
+                    '$hookObject must either implement interface TYPO3\\CMS\\Core\\Database\\PreProcessQueryHookInterface or interface TYPO3\\CMS\\Core\\Database\\PostProcessQueryHookInterface', 1299158548
+                    );
+                }
+                if ($hookObject instanceof PreProcessQueryHookInterface) {
+                    $this->preProcessHookObjects[] = $hookObject;
+                }
+                if ($hookObject instanceof PostProcessQueryHookInterface) {
+                    $this->postProcessHookObjects[] = $hookObject;
+                }
+            }
         }
     }
 }
