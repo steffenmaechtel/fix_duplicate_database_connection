@@ -8,7 +8,10 @@ use mysqli;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\PostProcessQueryHookInterface;
+use TYPO3\CMS\Core\Database\PreProcessQueryHookInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use UnexpectedValueException;
 
 class SingleDatabaseConnection extends DatabaseConnection
 {
@@ -48,7 +51,7 @@ class SingleDatabaseConnection extends DatabaseConnection
                 if (!(
                     $hookObject instanceof PreProcessQueryHookInterface || $hookObject instanceof PostProcessQueryHookInterface
                     )) {
-                    throw new \UnexpectedValueException(
+                    throw new UnexpectedValueException(
                     '$hookObject must either implement interface TYPO3\\CMS\\Core\\Database\\PreProcessQueryHookInterface or interface TYPO3\\CMS\\Core\\Database\\PostProcessQueryHookInterface', 1299158548
                     );
                 }
