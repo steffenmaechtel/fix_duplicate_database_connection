@@ -3,7 +3,6 @@
     "type": "typo3-cms-extension",
     "description": "TYPO3 extension to fix duplicate database connection for old extensions using $GLOBALS['TYPO3_DB']",
     "homepage": "https://github.com/steffenmaechtel/fix_duplicate_database_connection",
-    "version": "0.0.4",
     "license": "GPL-2.0-or-later",
     "keywords": [
         "TYPO3",
