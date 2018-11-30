@@ -10,6 +10,9 @@
         "CMS",
         "typo3"
     ],
+    "conflict": {
+        "steffenmaechtel/exception_handling_for_typo3_db": "*"
+    },
     "require": {
         "typo3/cms-core": ">=6.2.0,<8.7.999",
         "php": ">=5.5.0,<7.3.0"
