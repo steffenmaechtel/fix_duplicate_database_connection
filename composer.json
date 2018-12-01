@@ -5,8 +5,7 @@
     "homepage": "https://github.com/steffenmaechtel/fix_duplicate_database_connection",
     "license": "GPL-2.0-or-later",
     "keywords": [
-        "TYPO3",
-        "CMS",
+        "cms",
         "typo3"
     ],
     "conflict": {
