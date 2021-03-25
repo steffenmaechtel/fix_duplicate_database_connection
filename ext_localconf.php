@@ -21,4 +21,8 @@ call_user_func(function () {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Core\\Database\\DatabaseConnection'] = array(
         'className' => 'SteffenMaechtel\\FixDuplicateDatabaseConnection\\Xclass\\SingleDatabaseConnection'
     );
+    
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Typo3DbLegacy\\Database\\DatabaseConnection'] = array(
+        'className' => 'SteffenMaechtel\\FixDuplicateDatabaseConnection\\Xclass\\SingleDatabaseConnection'
+    );
 });
