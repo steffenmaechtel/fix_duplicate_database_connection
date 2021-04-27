@@ -6,6 +6,11 @@ defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(function () {
     $isAlreadyExtended = call_user_func(function ($className) {
+        // Dont check already extended in extension manager (install/uninstall: this file is loaded twice)
+        if (isset($_GET['route']) && $_GET['route'] === '/module/tools/ExtensionmanagerExtensionmanager') {
+            return false;
+        }
+
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'])) {
             return false;
         }
