@@ -26,5 +26,10 @@
             "email": "info@steffen-maechtel.de",
             "homepage": "http://www.steffen-maechtel.de/"
         }
-    ]
+    ],
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "fix_duplicate_database_connection"
+        }
+    }
 }
