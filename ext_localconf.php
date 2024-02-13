@@ -2,7 +2,7 @@
 /**
  * @author Steffen Maechtel <info@steffen-maechtel.de>
  */
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') || die('Access denied.');
 
 call_user_func(function () {
     $isAlreadyExtended = call_user_func(function ($className) {
