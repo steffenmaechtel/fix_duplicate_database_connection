@@ -47,7 +47,7 @@ class SingleDatabaseConnection extends DatabaseConnection
         $this->postProcessHookObjects = [];
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_db.php']['queryProcessors'])) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_db.php']['queryProcessors'] as $classRef) {
-                $hookObject = GeneralUtility::getUserObj($classRef);
+                $hookObject = GeneralUtility::makeInstance($classRef);
                 if (!(
                     $hookObject instanceof PreProcessQueryHookInterface || $hookObject instanceof PostProcessQueryHookInterface
                     )) {
