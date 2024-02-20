@@ -25,7 +25,7 @@ class SingleDatabaseConnection extends DatabaseConnection
     {
         /* @var $database Connection */
         $database = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionByName(ConnectionPool::DEFAULT_CONNECTION_NAME);
-        $handle = $database->getWrappedConnection()->getWrappedResourceHandle();
+        $handle = $database->getNativeConnection();
 
         if ($handle instanceof mysqli) {
             $this->setDatabaseHandle($handle);
